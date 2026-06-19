@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoodbyeDPI Manager | Ücretsiz DPI Bypass ve Konsol Yöneticisi</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1a2e'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Arial,sans-serif' font-weight='900' font-size='36' fill='%2322c55e'%3EG%3C/text%3E%3C/svg%3E">
+    <meta name="description" content="GoodbyeDPI'ı konsol penceresi açık kalmadan arka planda kolayca yönetin. Windows için geliştirilmiş, ücretsiz ve açık kaynaklı DPI bypass GUI aracı.">
+    <meta name="keywords" content="GoodbyeDPI Manager, GoodbyeDPI GUI, DPI bypass, internet özgürlüğü, GoodbyeDPI arayüz, Windows DPI, konsol olmadan GoodbyeDPI, yasaklı sitelere giriş">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Clayt Studio">
+    <link rel="canonical" href="https://claytstudio.com/dnschangerapp/">
+    
+    <meta property="og:title" content="GoodbyeDPI Manager | Ücretsiz DPI Bypass Yöneticisi">
+    <meta property="og:description" content="GoodbyeDPI'ı konsol penceresi açık kalmadan arka planda kolayca yönetin. Ücretsiz ve açık kaynaklı araç.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="og:url" content="https://claytstudio.com/dnschangerapp/">
+    <meta property="og:site_name" content="Clayt Studio">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GoodbyeDPI Manager | Ücretsiz DPI Bypass Yöneticisi">
+
+    <script type="application/ld+json">
+    [{
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "GoodbyeDPI Manager",
+        "operatingSystem": "Windows 10, Windows 11",
+        "applicationCategory": "UtilitiesApplication",
+        "description": "GoodbyeDPI'ı konsol penceresi olmadan arka planda yönetmenizi sağlayan minimalist, açık kaynaklı Windows uygulaması.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "softwareVersion": "1.0",
+        "downloadUrl": "https://github.com/Claymore222/GoodbyeDPI-Manager/releases/download/v1.0/DNSChangerApp.exe",
+        "author": { "@type": "Organization", "name": "Clayt Studio", "url": "https://claytstudio.com" }
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Clayt Studio",
+            "item": "https://claytstudio.com/"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Yazılımlar",
+            "item": "https://claytstudio.com/#products"
+        },{
+            "@type": "ListItem",
+            "position": 3,
+            "name": "GoodbyeDPI Manager"
+        }]
+    }]
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #f0f2f5;
+            --bg-card: #ffffff;
+            --bg-dark: #1a1a2e;
+            --bg-hero: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --text-light: #e2e8f0;
+            --green: #22c55e;
+            --green-dark: #16a34a;
+            --green-glow: rgba(34, 197, 94, 0.25);
+            --green-subtle: rgba(34, 197, 94, 0.08);
+            --accent: #0f3460;
+            --border: #e2e8f0;
+            --radius: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+            --shadow-green: 0 8px 30px rgba(34, 197, 94, 0.3);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.2;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 12px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-brand-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--green);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .nav-brand-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.7);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .nav-download-btn {
+            padding: 8px 20px;
+            background: var(--green);
+            color: #fff !important;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-download-btn:hover {
+            background: var(--green-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-green);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            width: 22px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(26, 26, 46, 0.97);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .mobile-nav.active { display: flex; }
+
+        .mobile-nav a {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            padding: 12px 32px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .mobile-nav a:hover { color: var(--green); }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: var(--bg-hero);
+            padding: 160px 24px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(15, 52, 96, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--green);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge .dot {
+            width: 7px;
+            height: 7px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .green { color: var(--green); }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 36px;
+            max-width: 480px;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .btn-green {
+            background: var(--green);
+            color: #fff;
+            box-shadow: var(--shadow-green);
+        }
+
+        .btn-green:hover {
+            background: var(--green-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(34, 197, 94, 0.4);
+        }
+
+        .btn-ghost {
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.85);
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 36px;
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--green);
+        }
+
+        .hero-stat-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.45);
+            font-weight: 500;
+        }
+
+        /* Hero visual */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-preview {
+            width: 240px;
+            background: #1e1e2e;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            margin: 0 auto;
+        }
+
+        .app-titlebar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: #16162a;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .app-titlebar-dots {
+            display: flex;
+            gap: 5px;
+        }
+
+        .app-titlebar-dots span {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+
+        .app-titlebar-dots span:nth-child(1) { background: #ef4444; }
+        .app-titlebar-dots span:nth-child(2) { background: #f59e0b; }
+        .app-titlebar-dots span:nth-child(3) { background: var(--green); }
+
+        .app-titlebar-text {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.35);
+            font-weight: 500;
+        }
+
+        .app-body {
+            padding: 28px 20px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .app-status {
+            text-align: center;
+        }
+
+        .app-status-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .app-status-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 10px var(--green-glow);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .app-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .app-btn-on {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: default;
+            background: var(--green);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(34, 197, 94, 0.35);
+        }
+
+        .app-btn-off {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: default;
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .app-tray-hint {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.25);
+            text-align: center;
+            padding: 0 8px;
+            line-height: 1.5;
+        }
+
+        /* ===== WAVE DIVIDER ===== */
+        .wave-divider {
+            position: relative;
+            margin-top: -2px;
+        }
+
+        .wave-divider svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* ===== FEATURES ===== */
+        .features {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--green);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            max-width: 520px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 32px 28px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(34, 197, 94, 0.2);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius);
+            background: var(--green-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--green);
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        .how-it-works {
+            padding: 80px 0 100px;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            position: relative;
+        }
+
+        .steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: 15%;
+            right: 15%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--green), rgba(34,197,94,0.2));
+            z-index: 0;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 3px solid var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--green);
+        }
+
+        .step-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            max-width: 260px;
+            margin: 0 auto;
+        }
+
+        /* ===== DOWNLOAD CTA ===== */
+        .download-section {
+            padding: 100px 0;
+        }
+
+        .download-card {
+            background: var(--bg-hero);
+            border-radius: var(--radius-xl);
+            padding: 64px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .download-card h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: #fff;
+            font-weight: 800;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .download-card > p {
+            color: rgba(255,255,255,0.6);
+            max-width: 480px;
+            margin: 0 auto 36px;
+            font-size: 1.05rem;
+            position: relative;
+        }
+
+        .download-info {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-top: 32px;
+            position: relative;
+        }
+
+        .download-info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+        }
+
+        .download-info-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--green);
+        }
+
+        /* ===== FEEDBACK ===== */
+        .feedback {
+            padding: 80px 0 100px;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+        }
+
+        .feedback-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .feedback-info h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .feedback-info > p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .feedback-contact {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .feedback-contact-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius);
+            background: var(--green-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feedback-contact-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--green);
+        }
+
+        .feedback-contact-text {
+            font-size: 0.95rem;
+        }
+
+        .feedback-contact-text span {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            margin-bottom: 1px;
+        }
+
+        .feedback-form {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px var(--green-subtle);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--green);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .form-submit:hover {
+            background: var(--green-dark);
+            box-shadow: var(--shadow-green);
+            transform: translateY(-1px);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--bg-dark);
+            padding: 48px 0 32px;
+        }
+
+        .footer-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 24px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-brand-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--green);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 0.95rem;
+            color: #fff;
+        }
+
+        .footer-brand-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover { color: var(--green); }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-copyright {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+        .footer-studio {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+        .footer-studio a {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .footer-studio a:hover { text-decoration: underline; }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-d1 { transition-delay: 0.1s; }
+        .reveal-d2 { transition-delay: 0.2s; }
+        .reveal-d3 { transition-delay: 0.3s; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 968px) {
+            .hero .container { grid-template-columns: 1fr; text-align: center; }
+            .hero-desc { margin-left: auto; margin-right: auto; }
+            .hero-actions { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .hero-visual { margin-top: 40px; }
+            .app-preview { margin: 0 auto; }
+            .features-grid { grid-template-columns: 1fr 1fr; }
+            .steps-grid { grid-template-columns: 1fr; gap: 40px; }
+            .steps-grid::before { display: none; }
+            .feedback-wrapper { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .features-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .download-card { padding: 40px 24px; }
+            .download-info { flex-direction: column; gap: 12px; align-items: center; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-top, .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding: 130px 16px 70px; }
+            .hero-stats { flex-direction: column; gap: 12px; align-items: center; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="nav-brand">
+                <div class="nav-brand-icon">G</div>
+                <span class="nav-brand-text">GoodbyeDPI Manager</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Özellikler</a></li>
+                <li><a href="#how">Nasıl Çalışır</a></li>
+                <li><a href="#feedback">Geri Bildirim</a></li>
+                <li>
+                    <a href="https://github.com/Claymore222/GoodbyeDPI-Manager/releases/download/v1.0/DNSChangerApp.exe" class="nav-download-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        İndir
+                    </a>
+                </li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menü">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-nav" id="mobile-nav">
+        <a href="#features">Özellikler</a>
+        <a href="#how">Nasıl Çalışır</a>
+        <a href="#feedback">Geri Bildirim</a>
+        <a href="https://github.com/Claymore222/GoodbyeDPI-Manager/releases/download/v1.0/DNSChangerApp.exe">⬇ İndir v1.0</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    v1.0 Yayında — Ücretsiz
+                </div>
+                <h1>GoodbyeDPI'ı<br><span class="green">Tek Tıkla</span> Yönet</h1>
+                <p class="hero-desc">Konsol penceresini sürekli açık tutmaya son! GoodbyeDPI Manager ile servisi arka planda başlatın, system tray'den yönetin. Minimalist arayüz, maksimum kontrol.</p>
+                <div class="hero-actions">
+                    <a href="https://github.com/Claymore222/GoodbyeDPI-Manager/releases/download/v1.0/DNSChangerApp.exe" class="btn btn-green" id="main-download-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Windows İçin İndir
+                    </a>
+                    <a href="https://github.com/Claymore222/GoodbyeDPI-Manager" target="_blank" class="btn btn-ghost">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        GitHub
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">v1.0</div>
+                        <div class="hero-stat-label">Son Sürüm</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">~500 KB</div>
+                        <div class="hero-stat-label">Dosya Boyutu</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">Windows</div>
+                        <div class="hero-stat-label">Platform</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="app-preview">
+                    <div class="app-titlebar">
+                        <div class="app-titlebar-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="app-titlebar-text">GoodbyeDPI Manager</div>
+                    </div>
+                    <div class="app-body">
+                        <div class="app-status">
+                            <div class="app-status-label">Durum</div>
+                            <div class="app-status-value">
+                                <span class="status-dot"></span>
+                                Aktif
+                            </div>
+                        </div>
+                        <div class="app-buttons">
+                            <div class="app-btn-on">✦ AÇ</div>
+                            <div class="app-btn-off">✕ KAPAT</div>
+                        </div>
+                        <div class="app-tray-hint">Kapatınca system tray'e küçülür</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wave -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0 80L60 74.7C120 69 240 59 360 53.3C480 48 600 48 720 53.3C840 59 960 69 1080 69.3C1200 69 1320 59 1380 53.3L1440 48V0H1380C1320 0 1200 0 1080 0C960 0 840 0 720 0C600 0 480 0 360 0C240 0 120 0 60 0H0V80Z" fill="#0f3460"/>
+        </svg>
+    </div>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Özellikler</span>
+                <h2 class="section-title">Neden GoodbyeDPI Manager?</h2>
+                <p class="section-desc">Konsol penceresiyle uğraşmadan GoodbyeDPI'ı kolayca yönetin.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal reveal-d1">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <h3>Tek Tıkla Aç/Kapat</h3>
+                    <p>GoodbyeDPI servisini tek bir butonla başlatın veya durdurun. Komut satırı gerekmez.</p>
+                </div>
+                <div class="feature-card reveal reveal-d2">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>Güvenli & Açık Kaynak</h3>
+                    <p>Tüm kaynak kodu GitHub'da açık. İstediğiniz zaman inceleyin, katkıda bulunun.</p>
+                </div>
+                <div class="feature-card reveal reveal-d3">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    </div>
+                    <h3>System Tray'de Çalışır</h3>
+                    <p>Uygulamayı kapattığınızda system tray'e küçülür. Konsol penceresi açık kalmaz, masaüstünüz temiz kalır.</p>
+                </div>
+                <div class="feature-card reveal reveal-d1">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    </div>
+                    <h3>Konsol Penceresi Yok</h3>
+                    <p>GoodbyeDPI'ın siyah konsol penceresini sürekli açık tutmanıza gerek yok. Her şey arka planda çalışır.</p>
+                </div>
+                <div class="feature-card reveal reveal-d2">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3>Hafif & Hızlı</h3>
+                    <p>Sadece ~500 KB. Kurulum gerektirmez, indirip hemen çalıştırın. Sisteminizi yormaz.</p>
+                </div>
+                <div class="feature-card reveal reveal-d3">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>
+                    </div>
+                    <h3>Tamamen Ücretsiz</h3>
+                    <p>Hiçbir gizli ücret, reklam veya premium özellik yok. Tamamen ücretsiz kullanın.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Nasıl Çalışır</span>
+                <h2 class="section-title">3 Kolay Adım</h2>
+                <p class="section-desc">DNS değiştirmek hiç bu kadar kolay olmamıştı.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card reveal reveal-d1">
+                    <div class="step-number">1</div>
+                    <h3>İndirin</h3>
+                    <p>DNSChangerApp.exe dosyasını indirin. Kurulum gerekmez.</p>
+                </div>
+                <div class="step-card reveal reveal-d2">
+                    <div class="step-number">2</div>
+                    <h3>AÇ Butonuna Basın</h3>
+                    <p>Uygulamayı açın ve büyük "AÇ" butonuna basarak GoodbyeDPI'ı başlatın.</p>
+                </div>
+                <div class="step-card reveal reveal-d3">
+                    <div class="step-number">3</div>
+                    <h3>Arka Planda Çalışsın</h3>
+                    <p>Pencereyi kapatın — uygulama system tray'e küçülür, servis arka planda çalışmaya devam eder.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download CTA -->
+    <section class="download-section" id="download">
+        <div class="container">
+            <div class="download-card reveal">
+                <h2>Hemen İndirin, <span style="color: var(--green);">Ücretsiz</span></h2>
+                <p>Konsol penceresiyle uğraşmaya son verin. GoodbyeDPI Manager ile her şey arka planda, tek tıkla.</p>
+                <a href="https://github.com/Claymore222/GoodbyeDPI-Manager/releases/download/v1.0/DNSChangerApp.exe" class="btn btn-green" style="position:relative;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    DNSChangerApp.exe İndir — v1.0
+                </a>
+                <div class="download-info">
+                    <div class="download-info-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Açık Kaynak
+                    </div>
+                    <div class="download-info-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        Windows 10 / 11
+                    </div>
+                    <div class="download-info-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                        ~500 KB
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback -->
+    <section class="feedback" id="feedback">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Geri Bildirim</span>
+                <h2 class="section-title">Görüşlerinizi Bekliyoruz</h2>
+                <p class="section-desc">Uygulamayı geliştirmemize yardımcı olun. Önerileriniz bizim için çok değerli.</p>
+            </div>
+            <div class="feedback-wrapper">
+                <div class="feedback-info reveal reveal-d1">
+                    <h3>Bize Ulaşın</h3>
+                    <p>Hata bildirimi, özellik talebi veya genel geri bildirimlerinizi bize iletebilirsiniz. Her mesajı okuyoruz.</p>
+                    <div class="feedback-contact">
+                        <div class="feedback-contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div class="feedback-contact-text">
+                            <span>Destek E-postası</span>
+                            <strong>destek@claytstudio.com</strong>
+                        </div>
+                    </div>
+                    <div class="feedback-contact">
+                        <div class="feedback-contact-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </div>
+                        <div class="feedback-contact-text">
+                            <span>GitHub Issues</span>
+                            <a href="https://github.com/Claymore222/GoodbyeDPI-Manager/issues" target="_blank" style="color: var(--green); font-weight: 600;">Hata Bildir →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="feedback-form reveal reveal-d2">
+                    <form id="feedback-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fb-name">Adınız</label>
+                                <input type="text" id="fb-name" placeholder="Adınızı girin" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fb-email">E-posta</label>
+                                <input type="email" id="fb-email" placeholder="E-posta adresiniz" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fb-type">Geri Bildirim Türü</label>
+                            <select id="fb-type">
+                                <option value="general">Genel Geri Bildirim</option>
+                                <option value="bug">Hata Bildirimi</option>
+                                <option value="feature">Özellik Talebi</option>
+                                <option value="other">Diğer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fb-message">Mesajınız</label>
+                            <textarea id="fb-message" placeholder="Geri bildiriminizi yazın..." rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit" id="fb-submit">Geri Bildirim Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-brand-icon">G</div>
+                    <span class="footer-brand-text">GoodbyeDPI Manager</span>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="#features">Özellikler</a></li>
+                    <li><a href="#how">Nasıl Çalışır</a></li>
+                    <li><a href="https://github.com/Claymore222/GoodbyeDPI-Manager" target="_blank">GitHub</a></li>
+                    <li><a href="#feedback">Geri Bildirim</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2026 GoodbyeDPI Manager. Tüm hakları saklıdır.</p>
+                <p class="footer-studio">Bir <a href="https://claytstudio.com" target="_blank">Clayt Studio</a> projesidir.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* Navbar Scroll */
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        /* Hamburger */
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        /* Scroll Reveal */
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        /* Smooth scroll */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        /* Feedback form */
+        document.getElementById('feedback-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('fb-submit');
+            const orig = btn.textContent;
+            btn.textContent = 'Gönderildi! ✓';
+            btn.style.background = '#16a34a';
+            setTimeout(() => {
+                btn.textContent = orig;
+                btn.style.background = '';
+                this.reset();
+            }, 2500);
+        });
+    </script>
+</body>
+</html>
