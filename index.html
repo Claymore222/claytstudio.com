@@ -637,12 +637,15 @@
                             </li>
                         </ul>
 
-                        <div class="product-actions">
+                        <div class="product-actions" style="align-items: center;">
                             <a href="/dnschangerapp/" target="_blank" class="btn btn-primary">Ürünü İncele →</a>
-                            <a href="https://github.com/Claymore222/GoodbyeDPI-Manager/releases/download/v1.0/DNSChangerApp.exe" class="btn btn-outline">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:8px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                                Direkt İndir
-                            </a>
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                                <a href="https://github.com/Claymore222/GoodbyeDPI-Manager/releases/download/v1.0/DNSChangerApp.exe" class="btn btn-outline">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:8px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    Direkt İndir
+                                </a>
+                                <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;" id="gh-download-count">İndirme Sayısı: ...</span>
+                            </div>
                         </div>
                     </div>
                     <div class="product-visual">
@@ -723,6 +726,23 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        // Fetch GitHub Release Downloads
+        fetch('https://api.github.com/repos/Claymore222/GoodbyeDPI-Manager/releases')
+            .then(response => response.json())
+            .then(data => {
+                let totalDownloads = 0;
+                data.forEach(release => {
+                    release.assets.forEach(asset => {
+                        totalDownloads += asset.download_count;
+                    });
+                });
+                const counterEl = document.getElementById('gh-download-count');
+                if(counterEl) {
+                    counterEl.innerText = 'Toplam İndirme: ' + totalDownloads;
+                }
+            })
+            .catch(err => console.error('Error fetching download count:', err));
     </script>
 </body>
 </html>
