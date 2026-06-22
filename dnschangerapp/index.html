@@ -163,6 +163,7 @@
             display: flex;
             list-style: none;
             gap: 4px;
+            align-items: center;
         }
 
         .nav-links a {
@@ -1015,6 +1016,169 @@
             .hero-stats { flex-direction: column; gap: 12px; align-items: center; }
             .btn { width: 100%; justify-content: center; }
         }
+        /* ===== SECURITY SECTION ===== */
+        .security-section {
+            padding: 80px 0;
+            background: #111827;
+            position: relative;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .security-content h2 {
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+
+        .security-content p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            font-size: 1.05rem;
+        }
+
+        .security-alert {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 32px;
+        }
+
+        .security-alert-icon {
+            color: #ef4444;
+            flex-shrink: 0;
+        }
+
+        .security-alert-text h4 {
+            color: #ef4444;
+            margin-bottom: 6px;
+            font-size: 1.1rem;
+        }
+
+        .security-alert-text p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .security-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-github {
+            background: #24292e;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            display: inline-flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .btn-github:hover {
+            background: #2f363d;
+            transform: translateY(-2px);
+        }
+
+        /* SmartScreen Mockup */
+        .smartscreen-mockup {
+            background: #0078d7; /* Windows Blue */
+            border-radius: 8px;
+            padding: 32px 24px;
+            box-shadow: 0 20px 40px rgba(0, 120, 215, 0.4);
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.2);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: var(--transition);
+        }
+
+        .smartscreen-mockup:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.02);
+        }
+
+        .smartscreen-mockup h3 {
+            font-weight: 300;
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        .smartscreen-mockup p {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        
+        .smartscreen-details {
+            margin-top: 32px;
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .smartscreen-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .smartscreen-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid transparent;
+            padding: 8px 24px;
+            color: #fff;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .smartscreen-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .smartscreen-btn.outline {
+            background: transparent;
+            border-color: rgba(255,255,255,0.5);
+            position: relative;
+        }
+
+        .smartscreen-btn.outline::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border: 2px dashed #22c55e;
+            border-radius: 4px;
+            animation: pulse 2s infinite;
+        }
+
+        @media (max-width: 900px) {
+            .security-grid {
+                grid-template-columns: 1fr;
+            }
+            .smartscreen-mockup {
+                transform: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1201,6 +1365,63 @@
                     <div class="step-number">3</div>
                     <h3>Arka Planda Çalışsın</h3>
                     <p>Pencereyi kapatın — uygulama system tray'e küçülür, servis arka planda çalışmaya devam eder.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security & Transparency -->
+    <section class="security-section" id="security">
+        <div class="container">
+            <div class="security-grid">
+                <div class="security-content reveal">
+                    <span class="section-tag" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border-color: rgba(239, 68, 68, 0.2);">Şeffaflık</span>
+                    <h2 style="font-family: 'Outfit', sans-serif;">Güvenlik & Antivirüs Uyarıları</h2>
+                    <p>GoodbyeDPI Manager, sisteminizin ağ paketlerine müdahale eden (DPI Bypass) güçlü bir araçtır. Henüz pahalı Microsoft geliştirici sertifikalarına sahip olmadığımız için, Windows Defender veya diğer antivirüs programları uygulamamızı indirirken yanlış alarm (False Positive) verebilir.</p>
+                    
+                    <div class="security-alert">
+                        <div class="security-alert-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        </div>
+                        <div class="security-alert-text">
+                            <h4>Nasıl Çalıştırılır?</h4>
+                            <p>Mavi <strong>"Windows kişisel bilgisayarınızı korudu"</strong> ekranı çıktığında, <strong style="color: #fff;">"Ek bilgi"</strong> (More info) bağlantısına tıklayın. Ardından altta beliren <strong style="color: var(--green);">"Yine de çalıştır"</strong> (Run anyway) butonuna basarak güvenle kullanabilirsiniz.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 24px;">
+                        <a href="https://github.com/Claymore222/GoodbyeDPI-Manager/releases/download/v1.0/DNSChangerApp.exe" class="btn btn-green" style="display: flex; justify-content: center; font-size: 1.1rem; padding: 14px 24px; box-shadow: 0 4px 14px rgba(34, 197, 94, 0.4);">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            Güvenli İndir (v1.0)
+                        </a>
+                    </div>
+
+                    <div class="security-actions">
+                        <a href="https://github.com/Claymore222/GoodbyeDPI-Manager" target="_blank" class="btn-github">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            Kodu Kendiniz Derleyin
+                        </a>
+                        <a href="https://www.virustotal.com/gui/home/upload" target="_blank" class="btn btn-outline">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            VirusTotal'de Taratın
+                        </a>
+                    </div>
+                </div>
+                <div class="security-visual reveal">
+                    <!-- CSS Mockup of Windows SmartScreen -->
+                    <div class="smartscreen-mockup">
+                        <h3>Windows kişisel bilgisayarınızı korudu</h3>
+                        <p>Microsoft Defender SmartScreen tanınmayan bir uygulamanın başlamasını engelledi. Bu uygulamayı çalıştırmak bilgisayarınızı riske sokabilir.</p>
+                        <div style="font-size: 0.9rem; margin-top: 10px; color: #fff; text-decoration: underline; cursor: pointer;">Ek bilgi</div>
+                        <div class="smartscreen-details">
+                            <div>Yayımcı: Bilinmeyen yayımcı</div>
+                            <div>Uygulama: DNSChangerApp.exe</div>
+                        </div>
+                        <div class="smartscreen-buttons">
+                            <button class="smartscreen-btn outline">Yine de çalıştır</button>
+                            <button class="smartscreen-btn">Çalıştırma</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
